@@ -1,0 +1,650 @@
+.ticket-field {
+  margin-bottom: 1rem;
+
+  &__label {
+    margin: 0.25rem 0 0;
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 15px;
+    color: #9aa0a8;
+    text-transform: uppercase;
+  }
+
+  &__control {
+    margin-top: 0.375rem;
+  }
+
+  &__error {
+    margin: 0.25rem 0 0;
+
+    font-size: 0.75rem;
+    line-height: 1.3;
+
+    color: #dc2626;
+  }
+}
+.save-footer {
+  margin-top: 1.5rem;
+
+  &__success {
+    margin-bottom: 0.75rem;
+  }
+
+  &__message {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    border: 1px solid;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.4;
+
+    svg {
+      flex-shrink: 0;
+      margin-top: 0.125rem;
+    }
+
+    &--error {
+      margin-bottom: 0.75rem;
+
+      background: #fef2f2;
+      border-color: #fecaca;
+      color: #b91c1c;
+    }
+
+    &--success {
+      background: #ecfdf5;
+      border-color: #a7f3d0;
+      color: #047857;
+    }
+  }
+
+  &__share {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    margin-top: 0.5rem;
+
+    padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+    border-radius: 0.5rem;
+  }
+
+  &__url {
+    min-width: 0;
+    flex: 1;
+    overflow: hidden;
+    font-family: monospace;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  &__copy {
+    flex-shrink: 0;
+    padding: 0.375rem 0.625rem;
+    border: 0;
+    border-radius: 0.375rem;
+    background: rgba(0, 0, 0, 0.05);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #000000;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &__button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono';
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    border: 0;
+    border-radius: 0.5rem;
+    background: #14151a;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+      background 0.2s ease,
+      opacity 0.2s ease;
+
+    &:hover:not(:disabled) {
+      background: #000000;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    &--saved {
+      background: rgba(0, 0, 0, 0.05);
+      color: #16181d;
+      cursor: default;
+      opacity: 1;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+    }
+  }
+
+  &__loader {
+    animation: ticket-spin 1s linear infinite;
+  }
+
+  &__status {
+    margin: 0.5rem 0 0;
+
+    font-size: 0.6875rem;
+
+    color: rgba(0, 0, 0, 0.35);
+  }
+}
+
+@keyframes ticket-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+.ticket-preview {
+  width: 100%;
+  max-width: 35rem;
+  &__main-header {
+    display: flex;
+    justify-content: space-between;
+    max-height: 22px;
+  }
+  &__ticket {
+    --ticket-ink: #ffffff;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 560 / 216;
+    overflow: hidden;
+    border-radius: 1.75rem;
+    padding: 26px 28px;
+  }
+
+  &__notch {
+    position: absolute;
+    left: calc(74% - 0.8125rem);
+    width: 1.625rem;
+    height: 1.625rem;
+    border-radius: 50%;
+    background: #e9ebef;
+    z-index: 2;
+    &--top {
+      top: -0.8125rem;
+    }
+    &--bottom {
+      bottom: -0.8125rem;
+    }
+  }
+
+  &__divider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 74%;
+    border-left: 2px dashed
+      color-mix(in srgb, var(--ticket-ink) 33%, transparent);
+  }
+
+  &__main {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 65%;
+  }
+
+  &__admit {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ticket-ink);
+    opacity: 0.5;
+  }
+  &__date-label {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ticket-ink);
+    opacity: 0.5;
+    line-height: 13px;
+  }
+
+  &__event {
+    min-width: 0;
+  }
+
+  &__event-name {
+    margin: 0;
+    overflow: hidden;
+    font-size: 33px;
+    font-weight: 500;
+    line-height: 102%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: --ticket-ink;
+    letter-spacing: -1%;
+    font-family: 'Space Grotesk', sans-serif;
+    padding-top: 24.5px;
+  }
+
+  &__holder {
+    font-family: 'JetBrains Mono';
+    padding: 9px 0;
+    font-weight: 400;
+    overflow: hidden;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    opacity: 0.72;
+  }
+
+  &__date {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__date-value {
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'jetBrains Mono';
+  }
+
+  &__stub {
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: 26%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0.5rem;
+  }
+
+  &__stub-header {
+    justify-content: space-between;
+    gap: 0.25rem;
+  }
+
+  &__tier-badge {
+    padding: 4px 11px;
+    border: 1.5px solid;
+    border-radius: 999px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.025em;
+    max-height: 22px;
+    font-family: 'JetBrains Mono';
+    position: relative;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+  }
+
+  &__id {
+    font-family: 'JetBrains Mono';
+    font-size: 10px;
+    white-space: nowrap;
+  }
+
+  &__mark {
+    opacity: 0.85;
+  }
+
+  &__tier {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    font-family: 'JetBrains Mono';
+  }
+
+  @media (max-width: 600px) {
+    &__ticket {
+      border-radius: 1.25rem;
+    }
+
+    &__main {
+      padding: 1.125rem;
+    }
+
+    &__event-name {
+      font-size: 1.35rem;
+    }
+
+    &__meta {
+      display: none;
+    }
+  }
+}
+.ticket-form {
+  width: 25rem;
+  flex-shrink: 0;
+  padding: 30px;
+  background: #fff;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+
+  &__header {
+    margin-bottom: 1.5rem;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  &__description {
+    margin: 0.25rem 0 0;
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 15px;
+    color: #9aa0a8;
+  }
+
+  &__group {
+    margin-bottom: 1rem;
+  }
+
+  &__label {
+    margin: 0.25rem 0 0;
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 15px;
+    color: #9aa0a8;
+  }
+
+  &__input {
+    width: 90%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.5rem;
+    background: #ffffff;
+    outline: none;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #16181d;
+
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.3);
+    }
+
+    &:focus {
+      border-color: rgba(0, 0, 0, 0.3);
+
+      box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15);
+    }
+
+    &--error {
+      border-color: #f87171;
+    }
+
+    &--color-value {
+      font-family: 'JetBrains Mono';
+      border: none;
+      max-width: 30%;
+    }
+  }
+
+  &__tier-control {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.25rem;
+    margin-top: 0.375rem;
+    padding: 0.25rem;
+    background: #f1f2f5;
+    border-radius: 0.5rem;
+  }
+
+  &__tier-button {
+    font-family: 'Space Grotesk';
+    padding: 0.375rem;
+    border: 0;
+    border-radius: 0.375rem;
+    background: transparent;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 13px;
+    cursor: pointer;
+    transition:
+      color 0.2s ease,
+      background 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &:hover {
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    &--active {
+      background: #ffffff;
+      color: rgba(0, 0, 0, 0.9);
+      font-style: normal;
+      font-weight: 700;
+
+      color: #16181d;
+    }
+  }
+
+  &__accent-control {
+    display: flex;
+    align-items: center;
+
+    gap: 0.5rem;
+
+    margin-top: 0.375rem;
+  }
+
+  &__accent-preview {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    border: 2px solid #e6e8ec;
+    border-radius: 8px;
+  }
+
+  &__swatches {
+    display: flex;
+
+    gap: 0.5rem;
+
+    margin-top: 0.5rem;
+  }
+
+  &__swatch {
+    --swatch-color: #000000;
+
+    width: 1.5rem;
+    height: 1.5rem;
+
+    padding: 0;
+
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &--active {
+      box-shadow:
+        0 0 0 2px #f7f5f0,
+        0 0 0 4px var(--swatch-color);
+    }
+  }
+
+  &__marks {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.375rem;
+    align-items: center;
+  }
+
+  &__mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 7px;
+    background: #f1f2f5;
+    color: rgba(0, 0, 0, 0.5);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease,
+      color 0.2s ease;
+
+    &:hover {
+      border-color: rgba(0, 0, 0, 0.3);
+    }
+
+    &--active {
+      background: #ffffff;
+      border-color: #d7dae0;
+      color: rgba(0, 0, 0, 0.9);
+      width: 44px;
+      height: 44px;
+    }
+  }
+
+  &__themes {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.5rem;
+    margin-top: 0.375rem;
+  }
+
+  &__theme {
+    padding: 0.375rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    &:hover {
+      border-color: rgba(0, 0, 0, 0.25);
+    }
+    &--active {
+      border-color: rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  &__theme-preview {
+    display: block;
+    height: 1.75rem;
+    border-radius: 0.25rem;
+    border-bottom: 3px solid;
+  }
+
+  &__theme-name {
+    display: block;
+    margin-top: 0.25rem;
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 9.5px;
+    line-height: 13px;
+    text-align: center;
+    color: #16181d;
+  }
+
+  @media (max-width: 1023px) {
+    width: 100%;
+
+    border-right: 0;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.5rem;
+  }
+}
+.ticket-studio {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  background: #e9ebef;
+
+  &__preview {
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+    box-shadow: 0px 1px 2px 0px #00000024;
+    box-shadow: 0px 18px 40px -20px #00000073;
+  }
+
+  @media (max-width: 1023px) {
+    flex-direction: column;
+
+    &__preview {
+      width: 100%;
+
+      padding: 3rem 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    &__preview {
+      padding: 2rem 1rem;
+    }
+  }
+}
