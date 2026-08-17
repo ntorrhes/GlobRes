@@ -18,31 +18,19 @@ import './styles/styles.scss';
 
 export default function TicketStudio() {
   const [eventName, setEventName] = useState('Neon Nights');
-
   const [holderName, setHolderName] = useState('A. Rivera');
-
   const [date, setDate] = useState('2026-08-15');
-
   const [tier, setTier] = useState<TicketTier>('VIP');
-
   const [themeKey, setThemeKey] = useState<ThemeKey>('midnight');
-
   const [accent, setAccent] = useState(THEMES.midnight.accent);
-
   const [mark, setMark] = useState<TicketMark>('sparkle');
-
   const [errors, setErrors] = useState<TicketErrors>({});
-
   const [saveState, setSaveState] = useState<SaveState>('idle');
-
   const [saveError, setSaveError] = useState('');
-
   const [saveResult, setSaveResult] = useState<SaveResult | null>(null);
-
   const [copied, setCopied] = useState(false);
   const [ticketId] = useState<string>(generateTicketId);
   const theme = THEMES[themeKey];
-
   const resetSaveState = () => {
     if (saveState === 'success' || saveState === 'error') {
       setSaveState('idle');
@@ -54,14 +42,9 @@ export default function TicketStudio() {
   };
 
   const handleFieldChange =
-    (
-      setter: (value: string) => void,
-
-      errorKey?: keyof TicketErrors
-    ) =>
+    (setter: (value: string) => void, errorKey?: keyof TicketErrors) =>
     (event: ChangeEvent<HTMLInputElement>) => {
       setter(event.target.value);
-
       resetSaveState();
 
       if (errorKey && errors[errorKey]) {
@@ -75,33 +58,27 @@ export default function TicketStudio() {
 
   const handleTierChange = (nextTier: TicketTier) => {
     setTier(nextTier);
-
     resetSaveState();
   };
 
   const handleThemeChange = (key: ThemeKey) => {
     setThemeKey(key);
-
     setAccent(THEMES[key].accent);
-
     resetSaveState();
   };
 
   const handleMarkChange = (nextMark: TicketMark) => {
     setMark(nextMark);
-
     resetSaveState();
   };
 
   const handleAccentSelect = (color: string) => {
     setAccent(color);
-
     resetSaveState();
   };
 
   const validate = (): boolean => {
     const nextErrors: TicketErrors = {};
-
     if (!eventName.trim()) {
       nextErrors.eventName = 'Event name is required.';
     }
@@ -171,10 +148,7 @@ export default function TicketStudio() {
       window.setTimeout(() => {
         setCopied(false);
       }, 1500);
-    } catch {
-      // The URL remains visible
-      // if clipboard permission fails.
-    }
+    } catch {}
   };
 
   return (

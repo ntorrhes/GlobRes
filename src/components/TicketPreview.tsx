@@ -10,13 +10,10 @@ interface TicketPreviewProps {
   eventName: string;
   holderName: string;
   date: string;
-
   tier: TicketTier;
   theme: TicketTheme;
-
   accent: string;
   mark: TicketMark;
-
   ticketId?: string;
 }
 
@@ -30,9 +27,8 @@ export function TicketPreview({
   mark,
   ticketId
 }: TicketPreviewProps) {
-  const MarkIcon = MARKS[mark];
-
   const displayDate = formatDate(date) || 'DD MON YYYY';
+
   const ticketStyle = {
     background: theme.gradient || theme.surface,
     color: theme.ink,
@@ -85,10 +81,13 @@ export function TicketPreview({
             <span className="ticket-preview__id">{ticketId || '—'}</span>
           </div>
 
-          <MarkIcon
-            size={22}
-            strokeWidth={1.75}
+          <span
             className="ticket-preview__mark"
+            style={
+              {
+                '--mark-icon': `url("${MARKS[mark]}")`
+              } as React.CSSProperties
+            }
           />
 
           <span className="ticket-preview__tier">{tier}</span>

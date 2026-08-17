@@ -1,6 +1,12 @@
 import type { ChangeEvent } from 'react';
 
-import { ACCENT_SWATCHES, MARKS, THEMES, TIERS } from '../constants/ticket';
+import {
+  ACCENT_SWATCHES,
+  MARKS,
+  THEMES,
+  TIERS,
+  THEME_PREVIEWS
+} from '../constants/ticket';
 
 import type {
   SaveResult,
@@ -202,7 +208,7 @@ export function TicketForm({
         <span className="ticket-form__label">Mark</span>
 
         <div className="ticket-form__marks">
-          {Object.entries(MARKS).map(([key, Icon]) => {
+          {Object.entries(MARKS).map(([key, icon]) => {
             const markKey = key as TicketMark;
 
             return (
@@ -216,7 +222,14 @@ export function TicketForm({
                   mark === markKey ? 'ticket-form__mark--active' : ''
                 }`}
               >
-                <Icon size={16} />
+                <span
+                  className="ticket-form__mark-icon"
+                  style={
+                    {
+                      '--mark-icon': `url("${icon}")`
+                    } as React.CSSProperties
+                  }
+                />
               </button>
             );
           })}
@@ -240,14 +253,21 @@ export function TicketForm({
                   themeKey === currentKey ? 'ticket-form__theme--active' : ''
                 }`}
               >
-                <span
-                  className="ticket-form__theme-preview"
-                  style={{
-                    backgroundColor: theme.surface,
-
-                    borderBottomColor: theme.accent
-                  }}
-                />
+                {THEME_PREVIEWS[currentKey] ? (
+                  <img
+                    src={THEME_PREVIEWS[currentKey]}
+                    alt={`${theme.name} theme preview`}
+                    className="ticket-form__theme-preview-image"
+                  />
+                ) : (
+                  <span
+                    className="ticket-form__theme-preview"
+                    style={{
+                      background: theme.gradient ?? theme.surface,
+                      borderBottomColor: theme.accent
+                    }}
+                  />
+                )}
 
                 <span className="ticket-form__theme-name">{theme.name}</span>
               </button>

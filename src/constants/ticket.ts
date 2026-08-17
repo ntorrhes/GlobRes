@@ -1,11 +1,19 @@
-import { Sparkle, Star, Music, Moon, type LucideIcon } from 'lucide-react';
-
 import type {
   TicketMark,
   TicketTheme,
   TicketTier,
   ThemeKey
 } from '../types/ticket';
+
+import sparkleIcon from '../assets/sparkle.svg';
+import starIcon from '../assets/star.svg';
+import noteIcon from '../assets/note.svg';
+import moonIcon from '../assets/moon.svg';
+
+import midnightTheme from '../assets/midnight.svg';
+import sunriseTheme from '../assets/sunrise.svg';
+import monoTheme from '../assets/mono.svg';
+import forestTheme from '../assets/forest.svg';
 
 export const THEMES: Record<ThemeKey, TicketTheme> = {
   midnight: {
@@ -60,9 +68,16 @@ export const TIER_BADGE: Record<TicketTier, string> = {
   Backstage: 'BSTG'
 };
 
-export const MARKS: Record<TicketMark, LucideIcon> = {
-  sparkle: Sparkle,
-  star: Star,
-  music: Music,
-  moon: Moon
+export const MARKS: Record<TicketMark, string> = {
+  sparkle: sparkleIcon,
+  star: starIcon,
+  music: noteIcon,
+  moon: moonIcon
+};
+
+export const THEME_PREVIEWS: Partial<Record<ThemeKey, string>> = {
+  midnight: midnightTheme,
+  sunrise: sunriseTheme,
+  mono: monoTheme,
+  forest: forestTheme
 };
